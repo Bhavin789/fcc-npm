@@ -1,20 +1,14 @@
 {
-	"name": "fcc-learn-npm-package-json",
+	"name": "fcc-learn-node-with-express",
+	"version": "0.1.0",
 	"dependencies": {
 		"express": "^4.14.0",
-    "moment": "2.10.2"
+		"body-parser": "^1.15.2",
+		"cookie-parser": "^1.4.3",
+		"fcc-express-bground": "https://github.com/freeCodeCamp/fcc-express-bground-pkg.git"
 	},
-	"author": "Bhavin Agarwal",
-	"description": "A project that helps me practice npm packages from free code camp",
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js"
-	},
-  "keywords": [ "practice", "freecodecamp" ],
-  "version": "1.0.0",
-  "license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://idontknow/todo.git"
 	}
 }
