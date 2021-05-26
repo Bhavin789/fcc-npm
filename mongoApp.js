@@ -8,22 +8,28 @@ const { Schema, model } = mongoose;
 
   const personSchema = new Schema({
     name:  {type: String, required: true}, // String is shorthand for {type: String}
-    age: String,
+    age: Number,
     favoriteFoods: [String],
   });
 
 let Person = new model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let personDocument = new Person({name: "Bhavin", age: 23, favoriteFoods: ["pav bhaji"]});
+  return personDocument.save().then(res => {
+      done(null, res);
+  }).catch(err => done(err))
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  return Person.create(arrayOfPeople).then(res => {
+    done(null, res)
+  }).catch(err => done(err));
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+
+  return Person.find({name: personName}).then(res => done(null, res)).catch(err => done(err));
 };
 
 const findOneByFood = (food, done) => {
