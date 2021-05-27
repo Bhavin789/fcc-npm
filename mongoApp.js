@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.connect(process.env['MONGO_URI'], { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env['MONGO_URI'], { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 require('dotenv').config();
 
@@ -57,7 +57,14 @@ const findEditThenSave = (personId, done) => {
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
-  done(null /*, data*/);
+  const filter = {name: personName};
+  const update = {age: ageToSet};
+
+  return Person.findOneAndUpdate(filter, update, {new: true}).then(res => {
+    done(null, res);
+  }).catch(err => {
+    return done(err);
+  })
 };
 
 const removeById = (personId, done) => {
